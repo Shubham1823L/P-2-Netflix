@@ -43,7 +43,7 @@ ul {
     filter: invert(1);
 }
 
-a {
+a ,button{
     cursor: pointer;
 }
 
