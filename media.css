@@ -122,6 +122,10 @@
         width: 95%;
     }
 
+    .answer{
+        font-size: 18px;
+    }
+
     .links {
         grid-template-columns: repeat(2, 1fr);
     }
