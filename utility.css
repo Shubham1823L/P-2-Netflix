@@ -1,0 +1,233 @@
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    line-height: 1.5;
+    /* -webkit-font-smoothing: antialiased; */
+}
+
+img,
+svg {
+    max-width: 100%;
+    display: block;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+a,
+button,
+input,
+select {
+    all: unset;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Utility Styling */
+.invert {
+    filter: invert(1);
+}
+
+a {
+    cursor: pointer;
+}
+
+/* General Styling */
+/* #DOUBT: Why cant i have spaces in folder locations */
+
+@font-face {
+    font-family: "Netflix Sans";
+    src: url("assets/fonts/NetflixSans/NetflixSansMedium.otf");
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: "Netflix Sans";
+    src: url("assets/fonts/NetflixSans/NetflixSansLight.otf");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Netflix Sans";
+    src: url("assets/fonts/NetflixSans/NetflixSansBold.otf");
+    font-weight: 900;
+}
+
+:root {
+    --red-700: #C11119;
+    --red-400: #E50815;
+
+    --grey-700: #2D2D2D;
+    --grey-hero: #B8B8B8;
+    --grey-200: #414141;
+    --grey-100: #ffffffb3;
+
+    --blue-400: #448ef4;
+
+    --ff-netflix-sans: "Netflix Sans";
+}
+
+body {
+    color: white;
+    font-family: var(--ff-netflix-sans);
+
+}
+
+
+.buttonBase {
+    background-color: var(--red-400);
+    padding: .42em 1.2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: capitalize;
+    font-size: 14px;
+    transition: all .3s ease-in-out;
+}
+
+.buttonBase:hover {
+    background-color: var(--red-700);
+}
+
+.langSelectBase {
+    background-color: rgba(0, 0, 0, 0.889);
+    border: 1.5px solid #656363;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    width: 7.5rem;
+    text-align: center;
+
+
+    select {
+        display: flex;
+        align-items: center;
+        padding: .2em 0;
+        font-weight: 600;
+        width: 100%;
+
+
+    }
+
+
+}
+
+.langSelectBase:focus-within {
+    outline: 2px solid white;
+}
+
+.langIcon {
+    position: absolute;
+    display: inline-block;
+    top: 7.5px;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+.dropDownArrow {
+    position: absolute;
+    display: inline-block;
+    top: 8px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+
+}
+
+.arrow {
+    padding-inline: 1em;
+    font-size: 1.5rem;
+    display: flex;
+    gap: .8rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.email {
+    border: 1.5px solid #615F5F;
+    border-radius: 6px;
+    text-align: left;
+    padding: 1rem;
+    box-sizing: border-box;
+    width: 100%;
+    color: white;
+
+    &:focus {
+        outline: 2px solid;
+        outline-offset: 2px;
+    }
+
+    &::placeholder {
+        color: var(--grey-hero);
+    }
+}
+
+
+.curveContainer {
+    --curve-height: 100px;
+    --left: -18%;
+    --width-perc: 140%;
+    position: relative;
+    height: var(--curve-height);
+    overflow: hidden;
+}
+
+.curveContainer::before {
+    height: var(--curve-height);
+    width: var(--width-perc);
+    position: absolute;
+    left: var(--left);
+    border-top-left-radius: 50% 100%;
+    border-top-right-radius: 50% 100%;
+    display: block;
+    content: '';
+    background: linear-gradient(to right,
+            rgba(33, 13, 22, 1) 0%,
+            rgba(184, 40, 105, 1),
+            rgba(229, 9, 20, 1),
+            rgba(184, 40, 105, 1),
+            rgba(33, 13, 22, 1) 100%);
+}
+
+.curveBox {
+    width: var(--width-perc);
+    height: var(--curve-height);
+    background-color: black;
+    position: relative;
+    left: var(--left);
+    top: 4%;
+    border-top-left-radius: 50% 100%;
+    border-top-right-radius: 50% 100%;
+    overflow: hidden;
+
+}
+
+.curveGradientBox {
+    position: absolute;
+    top: -10%;
+    height: var(--curve-height);
+    width: 100%;
+    background: #141E49;
+    background: radial-gradient(circle, rgba(20, 30, 73, 1) 0%, rgba(0, 0, 0, 1) 100%);
+    box-shadow: 1px -70px 50px 49px rgba(0, 0, 0, .25) inset;
+
+}

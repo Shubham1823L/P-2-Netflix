@@ -1,0 +1,245 @@
+@media (width>=1920px) {
+    .navBar {
+        width: 75%;
+        margin-inline: auto;
+    }
+
+    .bottomWrapper>* {
+        width: 62%;
+    }
+
+    .heroWrapper {
+        height: 996px;
+    }
+
+    .hero {
+        max-width: 670px;
+    }
+
+    .trendingShows div img {
+        height: 300px;
+    }
+
+    h2 {
+        font-size: 2rem !important;
+    }
+
+    h1 {
+        font-size: 4rem !important;
+    }
+
+    .trendingShows div span {
+        font-size: 120px;
+    }
+
+    .reasonsBox {
+        height: 325px;
+    }
+}
+
+@media (max-width:1650px) {
+    .reasonsBox {
+        height: 280px;
+    }
+}
+
+@media (max-width:1480px) {
+    .reasonsBox {
+        height: 310px;
+    }
+}
+
+@media (max-width:1430px) {
+    .reasonsBox {
+        height: 320px;
+    }
+}
+
+@media (max-width:1280px) {
+    .navBar {
+        padding-inline: 5rem;
+    }
+
+    .hero {
+        max-width: 510px;
+    }
+
+    .trendingShows div img {
+        height: 200px;
+    }
+
+    .arrow {
+        font-size: 18px;
+    }
+
+    .heroHeading {
+        h1 {
+            font-size: 40px;
+        }
+    }
+
+    .heroWrapper {
+        height: 760px;
+    }
+
+    .reasonsBoxes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .reasonsBox {
+        height: 200px;
+
+        p {
+            font-size: 14px;
+        }
+
+        h3 {
+            font-size: 20px;
+        }
+    }
+
+
+    .bottomWrapper>* {
+        width: 90%;
+    }
+
+    .trendingShows div span {
+        font-size: 80px;
+    }
+
+    .footerSignup {
+        width: 650px;
+    }
+
+    .links {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width:960px) {
+    .bottomWrapper>* {
+        width: 95%;
+    }
+
+    .links {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footerSignup {
+        width: 100%;
+    }
+
+    .trendingShows div span {
+        font-size: 64px;
+    }
+
+    .navBar {
+        padding: 1.5rem 2rem;
+
+        .logo {
+            width: 90px;
+        }
+    }
+
+    .trendingShows div img {
+        height: 150px;
+    }
+
+    .heroHeading {
+        h1 {
+            font-size: 2rem;
+        }
+    }
+
+    .heroHeading {
+        max-width: 460px;
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        p {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+    }
+
+    h2 {
+        font-size: 18px !important;
+    }
+
+    .reasonsBoxes {
+        grid-template-columns: 1fr;
+    }
+
+    .curveContainer {
+        --curve-height: 100px;
+        --left: -42%;
+        --width-perc: 190%;
+    }
+
+    .bottomWrapper {
+        box-shadow: 0px 0px 29px 20px rgba(0, 0, 0, 0.75);
+    }
+
+    .faq .question {
+        h3 {
+            font-size: 18px;
+        }
+
+        img {
+            width: 24px;
+            height: 24px;
+        }
+    }
+}
+
+@media (max-width:600px) {
+    .hero {
+        /* ##DOUBT */
+        /* width: 10000px; */
+        /* width: 100%; */
+        margin: unset;
+        margin-block: auto;
+        align-self: center;
+
+    }
+
+    .links {
+        grid-template-columns: 1fr;
+    }
+
+    .signupForm {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .footerSignup {
+        button {
+            align-self: flex-start;
+        }
+    }
+
+    .hero {
+        button {
+            align-self: center;
+        }
+    }
+
+    .navBar .langSelectBase {
+        width: 3.8rem;
+
+        select {
+            opacity: 0;
+        }
+    }
+
+    .heroWrapper {
+        height: 660px;
+    }
+
+    .navBar {
+        padding-inline: 1.5rem;
+    }
+}
