@@ -122,7 +122,7 @@
         width: 95%;
     }
 
-    .answer{
+    .answer {
         font-size: 18px;
     }
 
@@ -150,13 +150,12 @@
         height: 150px;
     }
 
-    .heroHeading {
-        h1 {
-            font-size: 2rem;
-        }
+    .hero {
+        gap: .3rem;
     }
 
     .heroHeading {
+        gap: .2rem;
         max-width: 460px;
 
         h1 {
