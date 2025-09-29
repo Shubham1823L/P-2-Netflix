@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "express": "^5.1.0",
+    "joi": "^18.0.1",
+    "nodemon": "^3.1.10"
+  }
+}

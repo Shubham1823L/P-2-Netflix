@@ -26,6 +26,11 @@ h6 {
     overflow-wrap: break-word;
 }
 
+@media (prefers-reduced-motion: no-preference){
+    html{
+        interpolate-size: allow-keywords;
+    }
+}
 a,
 button,
 input,

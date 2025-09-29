@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="utility.css">
     <link rel="stylesheet" href="media.css">
     <script src="script.js" defer></script>
+    <script src="backend.js" defer></script>
 </head>
 
 <body>
@@ -38,13 +39,16 @@
                     </div>
                     <div class="heroSignup">
                         <p>Ready to watch? Enter your email to create or restart your membership.</p>
-                        <div class="signupForm">
-                            <div><input class="email" type="email" placeholder="Email address"></div>
-                            <button class="arrow buttonBase">
+                        <form class="signupForm">
+                            <div class="emailWrapper">
+                                <input class="email" type="email" placeholder="Email address">
+                                <span>Please enter a valid email address*</span>
+                            </div>
+                            <button type="submit" class="arrow buttonBase">
                                 <span>get started</span>
                                 <img src="assets/svgs/arrow.svg" alt="arrow">
                             </button>
-                        </div>
+                        </form>
                     </div>
                 </div>
                 <div class="curveContainer">
@@ -94,13 +98,13 @@
             <div class="footer">
                 <div class="footerSignup">
                     <h3>Ready to watch? Enter your email to create or restart your membership.</h3>
-                    <div class="signupForm">
+                    <form class="signupForm">
                         <div><input class="email" type="email" placeholder="Email address"></div>
-                        <button class="arrow buttonBase">
+                        <button type="submit" class="arrow buttonBase">
                             <span>get started</span>
                             <img src="assets/svgs/arrow.svg" alt="arrow">
                         </button>
-                    </div>
+                    </form>
                 </div>
                 <div class="moreLinksWrapper">
                     <span>Questions? Call <a href="tel:000-800-919-1743">000-800-919-1743</a></span>

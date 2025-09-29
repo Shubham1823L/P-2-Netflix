@@ -51,7 +51,8 @@ getFaqs().then(() => {
         let img = faq.querySelector("button").querySelector("img")
         faq.addEventListener("click", () => {
             let rt = parseInt(getComputedStyle(img).rotate)
-            img.style.rotate = `${rt + 45}deg`
+            img.style.rotate = rt===0?`45deg`:'0deg'
+            console.log(rt)
 
             // To Show/Hide Answer
             faq.querySelector(".answer").classList.toggle("showAnswer")
