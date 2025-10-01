@@ -65,7 +65,7 @@ main {
         width: 260px;
     }
 
-    button {
+    button{
         background-color: var(--red-400);
         color: white;
         padding-block: .5em;

@@ -8,39 +8,26 @@
     <link rel="stylesheet" href="common.css">
     <link rel="stylesheet" href="signup.css">
     <link rel="stylesheet" href="signup2.css">
-   
+    <script src="backend.js" defer></script>
 </head>
 
 <body>
     <div class="emailSentAlerts">
         <div class="emailSentAlert">
             <img class="invert" src="assets/svgs/tick.svg" alt="sent-icon">
-            <p>Link Sent</p>
+            <p>Resent OTP</p>
             <button class="closeBtn invert"><img src="assets/svgs/close.svg" alt="close"></button>
         </div>
         <div class="emailSentAlert">
             <img class="invert" src="assets/svgs/tick.svg" alt="sent-icon">
-            <p>Link Sent</p>
+            <p>Resent OTP</p>
             <button class="closeBtn invert"><img src="assets/svgs/close.svg" alt="close"></button>
         </div>
         <div class="emailSentAlert">
             <img class="invert" src="assets/svgs/tick.svg" alt="sent-icon">
-            <p>Link Sent</p>
+            <p>Resent OTP</p>
             <button class="closeBtn invert"><img src="assets/svgs/close.svg" alt="close"></button>
         </div>
-        <script defer>
-            Array.from(document.querySelectorAll(".closeBtn")).forEach(e => {
-                e.addEventListener("click", () => {
-                    let dialogBox = e.parentElement
-                    dialogBox.style.opacity = 0
-                    dialogBox.style.translate = "0 100px"
-                    setTimeout(() => {
-                        dialogBox.style.display = "none"
-                    }, 500);
-
-                })
-            });
-        </script>
     </div>
     <header>
         <nav>
@@ -55,16 +42,17 @@
             <div><img src="assets/images/Email.png" alt="Email-img"></div>
             <div class="heroContent">
                 <div>
-                    <p>Step <b>1</b> of <b>3</b></p>
+                    <p>Step <b>2</b> of <b>3</b></p>
                     <h1>Check your inbox</h1>
                 </div>
-                <p>We sent a One Time Password to <strong>safsad@gmail.cm</strong>. Enter the OTP below to continue.
+                <p>We have sent a One Time Password to <strong id="userEmail">safsad@gmail.cm</strong>. Enter the OTP
+                    below to continue.
                 </p>
             </div>
             <span>
-                <input class="enterOtp" type="number" inputmode="numeric" pattern="\d{6}">
+                <input class="enterOtp" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="6">
+                <button class="buttonBase next ">Next</button>
                 <button class="buttonBase">resend OTP</button>
-                <!-- <button class="buttonBase">create password instead</button> -->
             </span>
         </div>
     </main>
