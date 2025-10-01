@@ -8,11 +8,14 @@ app.use(express.json())
 app.get("/", (req, res) => {
     res.sendFile("../index.html", { root: __dirname })
 })
+app.get("/signup", (req, res) => {
+    res.sendFile("../signup.html", { root: __dirname })
+})
 app.post("/", (req, res) => {
     const schema = Joi.object({
         email: Joi.string().email().required()
     })
-    let {value,error} = schema.validate(req.body)
+    let { value, error } = schema.validate(req.body)
     if (!error) {
         res.status(200).json(value)
     }

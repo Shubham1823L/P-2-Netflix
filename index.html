@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="utility.css">
     <link rel="stylesheet" href="media.css">
+    <link rel="stylesheet" href="common.css">
     <script src="script.js" defer></script>
     <script src="backend.js" defer></script>
 </head>
@@ -99,7 +100,10 @@
                 <div class="footerSignup">
                     <h3>Ready to watch? Enter your email to create or restart your membership.</h3>
                     <form class="signupForm">
-                        <div><input class="email" type="email" placeholder="Email address"></div>
+                        <div class="emailWrapper">
+                            <input class="email" type="email" placeholder="Email address">
+                            <span>Please enter a valid email address*</span>
+                        </div>
                         <button type="submit" class="arrow buttonBase">
                             <span>get started</span>
                             <img src="assets/svgs/arrow.svg" alt="arrow">

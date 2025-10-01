@@ -5,6 +5,7 @@ Array.from(document.querySelectorAll(".signupForm")).forEach(form => {
         const emailregex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         if (emailregex.test(email)) {
             form.querySelector("span").style.display = "none"
+            form.querySelector("input").style.borderColor = "#29B872"
             let res = await fetch("/", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -16,6 +17,7 @@ Array.from(document.querySelectorAll(".signupForm")).forEach(form => {
         }
         else {
             form.querySelector("span").style.display = "block"
+            form.querySelector("input").style.borderColor = "#EB3942"
         }
     })
 })

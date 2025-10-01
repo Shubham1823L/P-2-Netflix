@@ -1,3 +1,6 @@
+/* Utility Styling */
+
+
 /* Actual Styling */
 body {
     background-color: black;
@@ -110,7 +113,7 @@ background: linear-gradient(45deg, rgba(0, 0, 0, 0.9) 5%, rgba(0, 0, 0, 0.71) 50
         left: 1rem;
         top: 4.5rem;
         font-size: 14px;
-        color: rgb(199, 3, 3);
+        color: #EB3942;
     }
 }
 
