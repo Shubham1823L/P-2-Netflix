@@ -7,7 +7,7 @@
 
 body {
     line-height: 1.5;
-    /* -webkit-font-smoothing: antialiased; */
+    -webkit-font-smoothing: antialiased;
 }
 
 img,
@@ -26,11 +26,12 @@ h6 {
     overflow-wrap: break-word;
 }
 
-@media (prefers-reduced-motion: no-preference){
-    html{
+@media (prefers-reduced-motion: no-preference) {
+    html {
         interpolate-size: allow-keywords;
     }
 }
+
 a,
 button,
 input,
@@ -48,7 +49,10 @@ ul {
     filter: invert(1);
 }
 
-a ,button,select,input{
+a,
+button,
+select,
+input {
     cursor: pointer;
 }
 

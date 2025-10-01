@@ -6,9 +6,11 @@ const port = 3000
 app.use(express.static("../"))
 app.use(express.json())
 app.get("/", (req, res) => {
-    res.sendFile("../index.html", { root: __dirname })
+    console.log("HAHAHAH")
+    res.status(200).sendFile("../index.html", { root: __dirname })
 })
 app.get("/signup", (req, res) => {
+    console.log("YO")
     res.sendFile("../signup.html", { root: __dirname })
 })
 app.post("/", (req, res) => {

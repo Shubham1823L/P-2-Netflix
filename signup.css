@@ -10,7 +10,6 @@ body {
 
 nav {
     padding: 1.5rem 10.7rem;
-    border-bottom: 1px solid var(--border-grey);
 }
 
 nav ul {
@@ -48,7 +47,7 @@ nav ul {
 
 
 main {
-    border-bottom: 1px solid var(--border-grey);
+    border-block: 1px solid var(--border-grey);
     height: 500px;
     padding-inline: 1.5rem;
 }
@@ -71,6 +70,10 @@ main {
         color: white;
         padding-block: .5em;
         font-size: 1.5rem;
+    }
+
+    p {
+        -webkit-font-smoothing:subpixel-antialiased;
     }
 
 }
@@ -203,7 +206,8 @@ footer {
     .moreLinks {
         grid-template-columns: repeat(2, 1fr);
     }
-    footer{
+
+    footer {
         padding-block: 2.5rem;
     }
 }
@@ -216,7 +220,8 @@ footer {
     nav {
         padding-inline: 1.5rem;
     }
-    footer{
+
+    footer {
         padding-inline: 1.5rem;
     }
 
