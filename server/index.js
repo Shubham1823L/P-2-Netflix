@@ -8,6 +8,8 @@ const mongoose = require("mongoose")
 const User = require("./users")
 const path = require('path')
 
+app.set('view engine','ejs')
+app.set('views',path.join(__dirname,".."))
 
 app.use(express.static("../"))
 
@@ -21,11 +23,12 @@ app.get("/", (req, res) => {
 
 app.get("/signup", (req, res) => {
     // res.sendFile("../signup.html", { root:path.dirname(__dirname)  })
-    res.sendFile(path.join(__dirname, "..", "signup.html"))
+    // res.sendFile(path.join(__dirname, "..", "signup.html"))
+    res.render(path.join(__dirname, "..", "signup"),{email})
 })
 app.get("/signup2", (req, res) => {
     // res.sendFile("../signup.html", { root: __dirname })
-    res.sendFile(path.join(__dirname, "..", "signup2.html"))
+    res.render(path.join(__dirname, "..", "signup2"),{email})
 })
 
 
@@ -56,7 +59,9 @@ app.post("/", (req, res) => {
         res.status(400).json(error.details[0].message)
     }
 })
-
+app.post('/signup',(req,res)=>{
+    res.redirect("/signup2")
+})
 // DB setup
 async function connectToDB() {
     try {

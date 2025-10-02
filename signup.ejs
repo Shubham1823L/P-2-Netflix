@@ -26,13 +26,15 @@
                     <p>Step <b>1</b> of <b>3</b></p>
                     <h1>Finish setting up your account</h1>
                 </div>
-                <p>We will send a sign-up link to <strong>dsda@gmail.com</strong> so you can use Netflix without a
-                    password on any
-                    device
-                    at any time.
+                <p>We will send a OTP to <strong>
+                        <%= email %>
+                    </strong> for email verification.
                 </p>
             </div>
-            <button class="buttonBase">send link</button>
+            <button class="buttonBase">
+                <div class="loader"></div>
+                <span>send OTP</span>
+            </button>
         </div>
     </main>
     <footer>
@@ -52,11 +54,24 @@
                     <option value="1">English</option>
                     <option value="2">हिन्दी</option>
                 </select>
-                <span class="dropDownArrow"><img src="assets/svgs/arrowFilled.svg"
-                        alt="dropDownArrow"></span>
+                <span class="dropDownArrow"><img src="assets/svgs/arrowFilled.svg" alt="dropDownArrow"></span>
             </div>
         </div>
     </footer>
+    <script>
+        document.querySelector(".hero>.buttonBase").addEventListener("click", async (e) => {
+            e.target.classList.toggle("loading")
+            await fetch("/signup", {
+                method: "POST",
+            }).then((res) => {
+                if (res.status === 200) {
+                    setTimeout(() => {
+                        window.location.href = res.url
+                    }, 1000);
+                }
+            })
+        })
+    </script>
 </body>
 
 </html>

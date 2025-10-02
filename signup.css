@@ -65,7 +65,7 @@ main {
         width: 260px;
     }
 
-    button{
+    button {
         background-color: var(--red-400);
         color: white;
         padding-block: .5em;
@@ -73,7 +73,7 @@ main {
     }
 
     p {
-        -webkit-font-smoothing:subpixel-antialiased;
+        -webkit-font-smoothing: subpixel-antialiased;
     }
 
 }
@@ -177,7 +177,37 @@ footer {
 }
 
 
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+    position: relative;
 
+    .loader {
+        width: 25px;
+        height: 25px;
+        border: solid white;
+        border-width: 2px 2px 0 0;
+        border-radius: 50%;
+        animation: loading 2s linear 0s infinite;
+        position: absolute;
+
+    }
+
+
+    >span {
+        opacity: 0;
+    }
+}
+
+@keyframes loading {
+    from {
+        rotate: 0deg;
+    }
+
+    to {
+        rotate: 360deg;
+    }
+}
 
 
 @media (960px<width<1920px) {

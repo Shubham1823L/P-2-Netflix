@@ -367,6 +367,7 @@ background: linear-gradient(45deg, rgba(0, 0, 0, 0.9) 5%, rgba(0, 0, 0, 0.71) 50
         position: relative;
         opacity: .6;
         pointer-events: none;
+        cursor: wait;
     }
 
     &.arrow>span,

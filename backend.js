@@ -14,8 +14,8 @@ Array.from(document.querySelectorAll(".signupForm")).forEach(form => {
                     form.querySelector("span").style.display = "none"
                 });
             }, 1);
-            let result
-            let res = await fetch("/", {
+
+            await fetch("/", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ "email": email })
@@ -88,6 +88,5 @@ document.querySelector(".enterOtp").addEventListener("keydown", (e) => {
 
     }, 1);
 })
-
 
 
