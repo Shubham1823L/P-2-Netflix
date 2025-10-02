@@ -11,6 +11,38 @@
     <link rel="stylesheet" href="common.css">
     <script src="script.js" defer></script>
     <script src="backend.js" defer></script>
+    <style>
+        .loader {
+            width: 25px;
+            height: 25px;
+            border: solid white;
+            border-width: 2px 2px 0 0;
+            border-radius: 50%;
+            animation: loading 2s linear 0s infinite;
+            position: absolute;
+        }
+
+        @keyframes loading {
+            from {
+                rotate: 0deg;
+            }
+
+            to {
+                rotate: 360deg;
+            }
+        }
+
+        .arrow {
+            position: relative;
+            opacity: .6;
+            pointer-events: none;
+        }
+
+        .arrow>span,
+        .arrow>img {
+            opacity: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -47,6 +79,7 @@
                             </div>
                             <button type="submit" class="arrow buttonBase">
                                 <span>get started</span>
+                                <div class="loader"></div>
                                 <img src="assets/svgs/arrow.svg" alt="arrow">
                             </button>
                         </form>
@@ -106,6 +139,7 @@
                         </div>
                         <button type="submit" class="arrow buttonBase">
                             <span>get started</span>
+                            <div class="loader"></div>
                             <img src="assets/svgs/arrow.svg" alt="arrow">
                         </button>
                     </form>

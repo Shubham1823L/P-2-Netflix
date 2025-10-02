@@ -2,13 +2,44 @@ const express = require("express")
 const app = express()
 const Joi = require("joi")
 const port = 3000
+const router = express.Router()
 const nodemailer = require("nodemailer")
 const mongoose = require("mongoose")
 const User = require("./users")
+const path= require('path')
+
+
 app.use(express.static("../"))
+
 app.use(express.json())
 
 // Routing Here? Maybe Somewhere...
+app.get("/", (req, res) => {
+    // res.sendFile("../index.html", { root: __dirname })
+    res.sendFile(path.join(__dirname,"..","index.html"))
+})
+
+app.get("/signup", (req, res) => {
+    // res.sendFile("../signup.html", { root:path.dirname(__dirname)  })
+    res.sendFile(path.join(__dirname,"..","signup.html"))
+})
+app.get("/signup2", (req, res) => {
+    // res.sendFile("../signup.html", { root: __dirname })
+    res.sendFile(path.join(__dirname,"..","signup2.html"))
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const schema = Joi.object({
     email: Joi.string().email().required()
@@ -97,7 +128,7 @@ const callDB = async () => {
 // async function otpSender(email){
 //     const info = await transporter.sendMail({
 //         from: `"Shubham <shubhuprodev@gmail.com>"`,
-//         to: "shubhuisbetter@gmail.com",
+//         to: "prathamgupta.wk@gmail.com",
 //         text: "Why don't you try to walk 242125 steps today",
 //         subject: "This is a fun message from a great Dev",
 //     })

@@ -22,6 +22,15 @@ Array.from(document.querySelectorAll(".signupForm")).forEach(form => {
     })
 })
 
+Array.from(document.querySelectorAll(".signupForm")).forEach(form => {
+    let btn = form.querySelector(".arrow")
+    
+});
+
+
+
+
+
 
 Array.from(document.querySelectorAll(".closeBtn")).forEach(e => {
     e.addEventListener("click", () => {
@@ -49,5 +58,8 @@ document.querySelector(".enterOtp").addEventListener("keydown", (e) => {
             btn.style.opacity = 0.6
         }
 
-    },1);
+    }, 1);
 })
+
+
+
