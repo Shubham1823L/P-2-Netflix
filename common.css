@@ -50,9 +50,7 @@ ul {
 }
 
 a,
-button,
-select,
-input {
+select {
     cursor: pointer;
 }
 

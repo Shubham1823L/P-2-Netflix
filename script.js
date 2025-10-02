@@ -51,7 +51,7 @@ getFaqs().then(() => {
         let img = faq.querySelector("button").querySelector("img")
         faq.addEventListener("click", () => {
             let rt = parseInt(getComputedStyle(img).rotate)
-            img.style.rotate = rt===0?`45deg`:'0deg'
+            img.style.rotate = rt === 0 ? `45deg` : '0deg'
             console.log(rt)
 
             // To Show/Hide Answer
@@ -71,6 +71,16 @@ async function getLinks() {
 }
 getLinks()
 
+
+Array.from(document.querySelectorAll(".signupForm")).forEach(form => {
+    let btn = form.querySelector(".arrow")
+    btn.addEventListener("click",()=>{
+        btn.style.border="2px solid green"
+        setTimeout(() => {
+            btn.style.border="unset"
+        }, 1000);
+    })
+});
 
 
 
