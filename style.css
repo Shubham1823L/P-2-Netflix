@@ -349,3 +349,38 @@ background: linear-gradient(45deg, rgba(0, 0, 0, 0.9) 5%, rgba(0, 0, 0, 0.71) 50
     grid-template-columns: repeat(4, 1fr);
     gap: .8rem;
 }
+
+.loading {
+    .loader {
+        width: 25px;
+        height: 25px;
+        border: solid white;
+        border-width: 2px 2px 0 0;
+        border-radius: 50%;
+        animation: loading 2s linear 0s infinite;
+        position: absolute;
+    }
+
+
+
+    &.arrow {
+        position: relative;
+        opacity: .6;
+        pointer-events: none;
+    }
+
+    &.arrow>span,
+    &.arrow>img {
+        opacity: 0;
+    }
+}
+
+@keyframes loading {
+    from {
+        rotate: 0deg;
+    }
+
+    to {
+        rotate: 360deg;
+    }
+}

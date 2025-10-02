@@ -1,31 +1,59 @@
 Array.from(document.querySelectorAll(".signupForm")).forEach(form => {
+    // Adding eventListener to Get Started Button for form submission
     form.querySelector("button").addEventListener("click", async (e) => {
         e.preventDefault()
         let email = form.querySelector(".email").value
         const emailregex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
         if (emailregex.test(email)) {
-            form.querySelector("span").style.display = "none"
-            form.querySelector("input").style.borderColor = "#29B872"
+            setTimeout(() => {
+                Array.from(document.querySelectorAll(".signupForm")).forEach(form => {
+                    form.querySelector(".email").value = email
+                    form.querySelector(".email").style.borderColor = "#29B872"
+                    form.querySelector("button").classList.toggle("loading")
+                    form.querySelector("span").style.display = "none"
+                });
+            }, 1);
+            let result
             let res = await fetch("/", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ "email": email })
+            }).then(async res => {
+                if (res.status === 200) {
+                    setTimeout(() => {
+                        window.location.href = res.url
+                        Array.from(document.querySelectorAll(".signupForm")).forEach(form => {
+                            form.querySelector(".email").value = null
+                            form.querySelector(".email").style.borderColor = "#615F5F"
+                            form.querySelector("button").classList.toggle("loading")
+                        });
+                    }, 1000);
+                }
+                else if (res.status === 400) {
+                    Array.from(document.querySelectorAll(".signupForm")).forEach(form => {
+                        form.querySelector(".email").style.borderColor = "#EB3942"
+                        form.querySelector("button").classList.toggle("loading")
+                        form.querySelector("span").style.display = "block"
+                    });
+                }
             })
 
-            let result = await res.json()
-            console.log(result)
+
+
         }
+
         else {
-            form.querySelector("span").style.display = "block"
-            form.querySelector("input").style.borderColor = "#EB3942"
+            Array.from(document.querySelectorAll(".signupForm")).forEach(form => {
+                form.querySelector(".email").value = email
+                form.querySelector(".email").style.borderColor = "#EB3942"
+                form.querySelector("span").style.display = "block"
+            });
         }
     })
 })
 
-Array.from(document.querySelectorAll(".signupForm")).forEach(form => {
-    let btn = form.querySelector(".arrow")
-    
-});
+
 
 
 

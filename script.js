@@ -72,15 +72,7 @@ async function getLinks() {
 getLinks()
 
 
-Array.from(document.querySelectorAll(".signupForm")).forEach(form => {
-    let btn = form.querySelector(".arrow")
-    btn.addEventListener("click",()=>{
-        btn.style.border="2px solid green"
-        setTimeout(() => {
-            btn.style.border="unset"
-        }, 1000);
-    })
-});
+
 
 
 

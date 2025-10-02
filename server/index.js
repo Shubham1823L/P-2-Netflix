@@ -6,7 +6,7 @@ const router = express.Router()
 const nodemailer = require("nodemailer")
 const mongoose = require("mongoose")
 const User = require("./users")
-const path= require('path')
+const path = require('path')
 
 
 app.use(express.static("../"))
@@ -16,16 +16,16 @@ app.use(express.json())
 // Routing Here? Maybe Somewhere...
 app.get("/", (req, res) => {
     // res.sendFile("../index.html", { root: __dirname })
-    res.sendFile(path.join(__dirname,"..","index.html"))
+    res.sendFile(path.join(__dirname, "..", "index.html"))
 })
 
 app.get("/signup", (req, res) => {
     // res.sendFile("../signup.html", { root:path.dirname(__dirname)  })
-    res.sendFile(path.join(__dirname,"..","signup.html"))
+    res.sendFile(path.join(__dirname, "..", "signup.html"))
 })
 app.get("/signup2", (req, res) => {
     // res.sendFile("../signup.html", { root: __dirname })
-    res.sendFile(path.join(__dirname,"..","signup2.html"))
+    res.sendFile(path.join(__dirname, "..", "signup2.html"))
 })
 
 
@@ -48,10 +48,9 @@ let email
 app.post("/", (req, res) => {
     let { value, error } = schema.validate(req.body)
     if (!error) {
-        res.status(200).json(value.email)
         email = value.email
         callDB()
-
+        res.redirect("/signup")
     }
     else {
         res.status(400).json(error.details[0].message)
