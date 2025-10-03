@@ -1,0 +1,1 @@
+AJAX, fetch vs def form input , redirect and location.href

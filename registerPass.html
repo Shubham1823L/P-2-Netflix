@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="signup.css">
+    <style>
+        main{
+            height: 600px;
+        }
+        .loading {
+            .loader {
+                width: 25px;
+                height: 25px;
+                border: solid white;
+                border-width: 2px 2px 0 0;
+                border-radius: 50%;
+                animation: loading 2s linear 0s infinite;
+                position: absolute;
+            }
+
+
+
+            &.arrow {
+                position: relative;
+                opacity: .6;
+                pointer-events: none;
+                cursor: wait;
+            }
+
+            &.arrow>span,
+            &.arrow>img {
+                opacity: 0;
+            }
+        }
+
+        @keyframes loading {
+            from {
+                rotate: 0deg;
+            }
+
+            to {
+                rotate: 360deg;
+            }
+        }
+
+        .hero {
+            gap: 1.5rem;
+        }
+
+        .heroContent {
+            h1 {
+                max-width: 90%;
+            }
+
+            p {
+                max-width: 80%;
+            }
+
+            >div:last-child {
+                display: grid;
+                gap: .5rem;
+            }
+        }
+
+        .passWrapper {
+            margin-bottom: 1rem;
+            display: grid;
+            gap: 1rem;
+            position: relative;
+
+            span {
+                color: #e60611;
+                position: absolute;
+                font-size: 12px;
+                bottom: -35px;
+                display: none;
+            }
+        }
+
+        .pass {
+            border-radius: 5px;
+            border: 1px solid black;
+            padding: .8em 1em;
+            -webkit-font-smoothing: subpixel-antialiased;
+
+            &::placeholder {
+                font-weight: 500;
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><img class="logo" src="assets/svgs/logo.svg" alt="logo"></li>
+                <li><button class="buttonBase">sign in</button></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="hero">
+            <div class="heroContent">
+                <div>
+                    <p>Step <b>3</b> of <b>3</b></p>
+                    <h1>Create a password to start the Adventure</h1>
+                </div>
+                <div>
+                    <p>Just a few more steps and you’re done!
+                    </p>
+                    <p>We hate paperwork, too.</p>
+                </div>
+            </div>
+            <div class="passWrapper">
+                <input class="pass" placeholder="Enter your password" type="text">
+                <input class="pass" placeholder="Confirm password" type="text">
+                <span>Please check the passwords (8 characters minimum,1 special,1 numeric,1 capital,1 lowercase character
+                    atleast)*</span>
+            </div>
+            <button type="submit" class="buttonBase">
+                <div class="loader"></div>
+                <span>binge now!</span>
+            </button>
+        </div>
+    </main>
+    <footer>
+        <div class="footerContent">
+            <p>Questions? Call <a class="telephone" href="tel:000-800-919-1743">000-800-919-1743 (Toll-Free)</a></p>
+            <ul class="moreLinks">
+                <li><a href="">FAQ</a></li>
+                <li><a href="">Help Center</a></li>
+                <li><a href="">Terms of Use</a></li>
+                <li><a href="">Privacy</a></li>
+                <li><a href="">Cookie Preferences</a></li>
+                <li><a href="">Corporate Information</a></li>
+            </ul>
+            <div class="langSelectBase">
+                <span class="langIcon"><img src="assets/svgs/langIcon.svg" alt="langIcon"></span>
+                <select name="lang">
+                    <option value="1">English</option>
+                    <option value="2">हिन्दी</option>
+                </select>
+                <span class="dropDownArrow"><img src="assets/svgs/arrowFilled.svg" alt="dropDownArrow"></span>
+            </div>
+        </div>
+    </footer>
+    <script>
+
+        document.querySelector(".hero>button").addEventListener("click", (e) => {
+            e.preventDefault()
+            let pass1 = document.querySelectorAll(".pass")[0].value
+            let pass2 = document.querySelectorAll(".pass")[1].value
+            const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\w\s])[^\s]{8,}$/
+            if (pass1 === pass2 && regex.test(pass1)) {
+                e.target.classList.toggle("loading")
+                document.querySelector(".passWrapper>span").style.display = "none"
+                async () => {
+                    await fetch("/register", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: pass1,
+                    }).then((res)=>{
+                    if(res.status===200){
+                        setTimeout(() => {
+                            window.location.href=res.url
+                        }, 1000);
+                    }
+                })
+                }
+
+
+                // Post request here
+            }
+            else {
+                document.querySelector(".passWrapper>span").style.display = "block"
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>

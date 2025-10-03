@@ -8,8 +8,8 @@ const mongoose = require("mongoose")
 const User = require("./users")
 const path = require('path')
 
-app.set('view engine','ejs')
-app.set('views',path.join(__dirname,".."))
+app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, ".."))
 
 app.use(express.static("../"))
 
@@ -24,11 +24,11 @@ app.get("/", (req, res) => {
 app.get("/signup", (req, res) => {
     // res.sendFile("../signup.html", { root:path.dirname(__dirname)  })
     // res.sendFile(path.join(__dirname, "..", "signup.html"))
-    res.render(path.join(__dirname, "..", "signup"),{email})
+    res.render(path.join(__dirname, "..", "signup"), { email })
 })
 app.get("/signup2", (req, res) => {
     // res.sendFile("../signup.html", { root: __dirname })
-    res.render(path.join(__dirname, "..", "signup2"),{email})
+    res.render(path.join(__dirname, "..", "signup2"), { email })
 })
 
 
@@ -59,7 +59,9 @@ app.post("/", (req, res) => {
         res.status(400).json(error.details[0].message)
     }
 })
-app.post('/signup',(req,res)=>{
+app.post('/signup', (req, res) => {
+const otp=Math.floor((Math.random()*(1_000_000-100_000))+100_000) 
+    // otpSender(email,otp)
     res.redirect("/signup2")
 })
 // DB setup
@@ -76,14 +78,13 @@ connectToDB()
 const callDB = async () => {
 
     let currentUser = await User.findOne({ email: email })
-    console.log(currentUser)
+
     if (!currentUser) {
         console.log("User does not exist yet")
         console.log("Creating new user")
         await User.create({ email: email, status: "UNVERIFIED" })
-        console.log("User created")
         console.log(await User.findOne({ email: email }))
-        currentUser = await User.findOne({ email: email })
+        console.log("User created")
     }
     else {
         console.log("User already exists,checking for status")
@@ -121,23 +122,23 @@ const callDB = async () => {
 
 // Sending Otp below
 
-// const transporter = nodemailer.createTransport({
-//     service: "gmail",
-//     auth: {
-//         user: "shubhuprodev@gmail.com",
-//         pass: "tldtxtqfutevumjt"
-//     }
-// })
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: "shubhuprodev@gmail.com",
+        pass: "tldtxtqfutevumjt"
+    }
+})
 
-// async function otpSender(email){
-//     const info = await transporter.sendMail({
-//         from: `"Shubham <shubhuprodev@gmail.com>"`,
-//         to: "prathamgupta.wk@gmail.com",
-//         text: "Why don't you try to walk 242125 steps today",
-//         subject: "This is a fun message from a great Dev",
-//     })
-//     console.log("Message sent:", info.messageId)
-// }
+async function otpSender(email,otp) {
+    const info = await transporter.sendMail({
+        from: `"Shubham <shubhuprodev@gmail.com>"`,
+        to: email,
+        text: `Why don't you try to walk ${otp} steps today`,
+        subject: "This is a fun message from a great Dev",
+    })
+    console.log("Message sent:", info.messageId)
+}
 
 app.listen(port, () => {
     console.log("Listening to port:", port)
