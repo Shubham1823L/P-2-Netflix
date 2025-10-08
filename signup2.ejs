@@ -45,13 +45,18 @@
                     <p>Step <b>2</b> of <b>3</b></p>
                     <h1>Check your inbox</h1>
                 </div>
-                <p>We have sent a One Time Password to <strong id="userEmail"><%= email %></strong>. Enter the OTP
+                <p>We have sent a One Time Password to <strong id="userEmail">
+                        <%= email %>
+                    </strong>. Enter the OTP
                     below to continue.
                 </p>
             </div>
             <span>
                 <input class="enterOtp" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="6">
-                <button class="buttonBase next ">Next</button>
+                <button class="buttonBase next ">
+                    <div class="loader"></div>
+                    <span>Next</span>
+                </button>
                 <button class="buttonBase">resend OTP</button>
             </span>
         </div>
@@ -77,7 +82,29 @@
             </div>
         </div>
         <script>
-            document.querySelector(".next")
+            document.querySelector(".next").addEventListener("click", async (e) => {
+                e.target.classList.toggle("loading")
+                let input = document.querySelector(".enterOtp")
+                const otp = input.value
+                await fetch('/signup2', {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ otp: otp }),
+                }).then((res) => {
+                    console.log(res.status)
+                    if (res.status === 200) {
+                        setTimeout(() => {
+                            window.location.href = res.url
+                        }, 1000);
+
+                    }
+                    else {
+                        input.value = null
+                        e.target.classList.toggle("loading")
+                        alert("An error occured")
+                    }
+                })
+            })
         </script>
     </footer>
 </body>

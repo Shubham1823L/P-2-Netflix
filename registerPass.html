@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="common.css">
     <link rel="stylesheet" href="signup.css">
     <style>
-        main{
+        main {
             height: 600px;
         }
+
         .loading {
             .loader {
                 width: 25px;
@@ -120,7 +121,8 @@
             <div class="passWrapper">
                 <input class="pass" placeholder="Enter your password" type="text">
                 <input class="pass" placeholder="Confirm password" type="text">
-                <span>Please check the passwords (8 characters minimum,1 special,1 numeric,1 capital,1 lowercase character
+                <span>Please check the passwords (8 characters minimum,1 special,1 numeric,1 capital,1 lowercase
+                    character
                     atleast)*</span>
             </div>
             <button type="submit" class="buttonBase">
@@ -154,25 +156,27 @@
 
         document.querySelector(".hero>button").addEventListener("click", (e) => {
             e.preventDefault()
-            let pass1 = document.querySelectorAll(".pass")[0].value
-            let pass2 = document.querySelectorAll(".pass")[1].value
+            let pass1 = document.querySelectorAll(".pass")[0].value.trim()
+            let pass2 = document.querySelectorAll(".pass")[1].value.trim()
             const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\w\s])[^\s]{8,}$/
+
             if (pass1 === pass2 && regex.test(pass1)) {
                 e.target.classList.toggle("loading")
-                document.querySelector(".passWrapper>span").style.display = "none"
-                async () => {
-                    await fetch("/register", {
+                console.log(document.querySelector(".passWrapper > span"))
+                document.querySelector(".passWrapper > span").style.display = "none";
+                (async () => {
+                    await fetch("/registerPass", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: pass1,
-                    }).then((res)=>{
-                    if(res.status===200){
-                        setTimeout(() => {
-                            window.location.href=res.url
-                        }, 1000);
-                    }
-                })
-                }
+                        body: JSON.stringify({ pass: pass1 }),
+                    }).then((res) => {
+                        if (res.status === 200) {
+                            setTimeout(() => {
+                                window.location.href = res.url
+                            }, 1000);
+                        }
+                    })
+                })()
 
 
                 // Post request here
@@ -180,6 +184,7 @@
             else {
                 document.querySelector(".passWrapper>span").style.display = "block"
             }
+
         })
 
 

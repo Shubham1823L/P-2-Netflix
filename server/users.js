@@ -1,16 +1,17 @@
-const { bool } = require("joi")
-const mongoose= require("mongoose")
+const { bool, number } = require("joi")
+const mongoose = require("mongoose")
 
-const userSchema= new mongoose.Schema({
-    email:{
-        type:String,
-        required:true,
-        unique:true,
+const userSchema = new mongoose.Schema({
+    email: {
+        type: String,
+        required: true,
+        unique: true,
     },
-    password:String,
-    status:String,
+    password: String,
+    status: String,
+    otp: Number,
     // verified:bool,
 
 })
 
-module.exports=mongoose.model("User",userSchema)
+module.exports = mongoose.model("User", userSchema)
