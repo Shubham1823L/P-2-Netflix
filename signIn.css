@@ -1,0 +1,277 @@
+.heroWrapper {
+    background-image: url('assets/images/herobg.jpg');
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: max(835px, 80vh) !important;
+
+}
+
+.heroWrapper>div:first-child {
+    background-color: rgba(0, 0, 0, 0.60);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.navBar {
+    display: flex;
+    align-items: center;
+    padding: 1.35rem 9rem;
+
+    .logo {
+        width: 150px;
+    }
+}
+
+.navBarRight {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+}
+
+/*  */
+.hero {
+    display: flex;
+    justify-content: center !important;
+    align-items: center;
+}
+
+form {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    padding: 3rem 4rem;
+    height: 710px;
+    max-width: 480px;
+
+}
+
+legend {
+    margin-bottom: .5rem;
+
+    h1 {
+        font-size: 2rem !important;
+    }
+}
+
+.formContent {
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    a:hover {
+        text-decoration: underline ; 
+    }
+}
+
+.formField {
+    border: 1px solid #737577;
+    color: white;
+    width: 100%;
+    padding: .8em 1.2em;
+    border-radius: 5px;
+
+    &:focus {
+        outline: 2px solid white;
+        outline-offset: 2px;
+    }
+
+    &::placeholder {
+        color: #BBBEC2;
+    }
+}
+
+.new {
+    color: #737577;
+    font-size: 15px;
+    font-weight: 500;
+
+    a {
+        color: white;
+    }
+}
+
+.rememberLabel {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+#remember {
+    border-radius: 2px;
+    background-color: white;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    cursor: pointer;
+
+    &:checked::after {
+        display: block;
+    }
+
+    &::after {
+        display: none;
+        content: '';
+        border: solid black;
+        border-width: 0 2px 2px 0;
+        border-radius: 1px;
+        rotate: 45deg;
+        width: 4px;
+        height: 9px;
+        position: absolute;
+        left: 35%;
+        top: 20%;
+
+    }
+
+}
+
+
+/* #remember::before {
+    background-color: white;
+    content: '';
+    width: 20px;
+    height: 20px;
+    display: block;
+} */
+.signUpNow {}
+
+.captcha {
+    color: #7A7473;
+    font-size: 13px;
+}
+
+
+.buttonBase {
+    padding: .5em;
+    font-size: 1rem;
+
+    &:last-of-type {
+        background-color: #383537;
+
+        &:hover {
+            background-color: #272727;
+        }
+    }
+}
+
+.forgotPass {
+    text-decoration: underline;
+    align-self: center;
+}
+
+/*  */
+footer {
+    -webkit-font-smoothing: subpixel-antialiased;
+    background-color: #161616;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+    padding: 4.3rem 10.7rem;
+}
+
+.footerContent {
+    max-width: 1920px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+
+
+}
+
+.telephone:hover {
+    text-decoration: underline;
+}
+
+.moreLinks {
+    margin-bottom: .6rem;
+    font-size: 14px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 1rem;
+
+    a {
+        text-decoration: underline;
+    }
+}
+
+.langSelectBase {
+    background-color: transparent;
+    border: 1px solid #656363;
+    color: white;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    width: 7.8rem;
+    text-align: center;
+
+
+    select {
+        display: flex;
+        align-items: center;
+        padding: .2em 0;
+        font-weight: 400;
+        width: 100%;
+
+
+    }
+
+
+}
+
+.langSelectBase:focus-within {
+    outline: 2px solid white;
+    outline-offset: 2px;
+}
+
+.langIcon {
+    pointer-events: none;
+    position: absolute;
+    display: inline-block;
+    top: 6.5px;
+    left: 13px;
+    width: 20px;
+    height: 20px;
+}
+
+.dropDownArrow {
+    pointer-events: none;
+    position: absolute;
+    display: inline-block;
+    top: 8px;
+    right: 7px;
+    width: 20px;
+    height: 20px;
+
+}
+
+@media (max-width:1280px) {
+
+
+    footer {
+        padding-inline: 2rem;
+    }
+}
+
+@media (max-width:960px) {
+    .moreLinks {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width:640px) {
+    .moreLinks {
+        grid-template-columns: 1fr;
+    }
+
+    .langSelectBase {
+        width: 3.8rem;
+
+        select {
+            opacity: 0;
+        }
+    }
+}

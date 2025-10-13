@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="utility.css">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="signIn.css">
+    <link rel="stylesheet" href="media.css">
+</head>
+
+<body>
+    <div class="heroWrapper">
+        <div>
+            <div class="navBar">
+                <img class="logo" src="assets/svgs/logo.svg" alt="logo">
+            </div>
+            <div class="hero">
+                <form>
+                    <div class="formContent">
+                        <legend>
+                            <h1>Sign In</h1>
+                        </legend>
+                        <div>
+                            <input class="formField" type="email" placeholder="Email" id="email" value="<%= email %>">
+                        </div>
+                        <div>
+                            <input class="formField" type="password" placeholder="Password" id="pass">
+                        </div>
+                        <button class="buttonBase" id="signIn">sign in</button>
+                        <p style="align-self: center; color:#737577; font-weight: 600;">OR</p>
+                        <button class="buttonBase">Use a sign-in code</button>
+                        <a href="" class="forgotPass">Forgot Password?</a>
+                        <label for="remember" class="rememberLabel"><input type="checkbox" name="remember"
+                                id="remember">Remember Me</label>
+                        <p class="new">New to Netflix? <a href="" class="signUpNow">Sign up now.</a></p>
+                        <p class="captcha">This page is protected by Google reCAPTCHA to ensure you're not a bot.
+                        </p>
+                        <a href="" style="font-size: 13px; color: #448EF4;">Learn more.</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footerContent">
+            <p>Questions? Call <a class="telephone" href="tel:000-800-919-1743">000-800-919-1743 (Toll-Free)</a></p>
+            <ul class="moreLinks">
+                <li><a href="">FAQ</a></li>
+                <li><a href="">Help Center</a></li>
+                <li><a href="">Terms of Use</a></li>
+                <li><a href="">Privacy</a></li>
+                <li><a href="">Cookie Preferences</a></li>
+                <li><a href="">Corporate Information</a></li>
+            </ul>
+            <div class="langSelectBase">
+                <span class="invert langIcon"><img src="assets/svgs/langIcon.svg" alt="langIcon"></span>
+                <select name="lang">
+                    <option value="1">English</option>
+                    <option value="2">हिन्दी</option>
+                </select>
+                <span class="invert dropDownArrow"><img src="assets/svgs/arrowFilled.svg" alt="dropDownArrow"></span>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const btn = document.querySelector('#signIn')
+        btn.addEventListener('click', async (e) => {
+            e.preventDefault()
+            const email = document.querySelector('#email').value
+            const password = document.querySelector('#pass').value
+            await fetch('/signIn', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password })
+            }).then(async res => {
+                const response = await res.json()
+                if (res.status === 200) {
+                    localStorage.setItem('accessToken', response.accessToken)
+                    window.location.href = response.redirect
+                    return
+                }
+                alert('Incorrect password')
+
+            })
+        })
+    </script>
+</body>
+
+</html>

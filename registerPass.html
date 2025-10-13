@@ -5,6 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script>
+        const accessToken = localStorage.getItem('accessToken')
+        function authorise() {
+            if (!accessToken) return
+            fetch('/auth', {
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            }).then(res => {
+                console.log(res)
+                res.ok ? window.location.href = '/success' : ""
+            })
+        }
+        authorise()
+
+    </script>
     <link rel="stylesheet" href="common.css">
     <link rel="stylesheet" href="signup.css">
     <style>

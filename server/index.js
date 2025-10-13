@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express")
 const app = express()
 const Joi = require("joi")
@@ -7,6 +8,9 @@ const nodemailer = require("nodemailer")
 const mongoose = require("mongoose")
 const User = require("./users")
 const path = require('path')
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
+
 var otp
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, ".."))
@@ -36,7 +40,12 @@ app.get("/registerPass", (req, res) => {
     res.sendFile(path.join(__dirname, "..", "registerPass.html"))
 })
 app.get("/success", (req, res) => {
-    res.sendFile(path.join(__dirname, "..", "success.html"))
+    res.render(path.join(__dirname, "..", "success"), { email })
+})
+app.get("/signIn", (req, res) => {
+    res.render(path.join(__dirname, "..", "signIn"), { email })
+})
+app.get('/auth', auth, (req, res) => {
 })
 
 
@@ -88,12 +97,40 @@ app.post('/signup2', async (req, res) => {
 
 app.post('/registerPass', async (req, res) => {
     console.log("setting password", req.body.pass)
-    let password = req.body.pass
-    await User.updateOne({ email }, { $set: { password, status: "REGISTERED" } })
+    const password = req.body.pass
+    const hashedPassword = await bcrypt.hash(password, 10)
+
+    await User.updateOne({ email }, { $set: { password: hashedPassword, status: "REGISTERED" } })
     console.log("password set for user:", await User.findOne({ email }))
     res.redirect('/success')
 })
+app.post('/signIn', async (req, res) => {
+    const email = req.body.email
+    const user = await User.findOne({ email })
+    if (user == null) return res.status(400).redirect('/')
+    const currentPass = req.body.password
+    const actualPass = user.password
+    try {
+        if (await bcrypt.compare(currentPass, actualPass)) {
+            const payload = { email }
+            const accessToken = generateAccessToken(payload)
+            const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET)
+            res.cookie('refreshToken', refreshToken, {
+                httpOnly: true,
+                sameSite: "lax"
+            })
+            res.status(200).json({ redirect: '/success', accessToken })
+        }
+        else {
+            res.status(400).redirect('/signIn')
+        }
 
+    } catch (err) {
+        res.status(500).redirect('/signIn')
+        console.log(err)
+    }
+
+})
 // DB setup
 async function connectToDB() {
     try {
@@ -137,7 +174,7 @@ const callDB = async () => {
             }
             case "REGISTERED": {
                 console.log("ALL SET")
-                return '/success'
+                return '/signIn'
             }
         }
     }
@@ -149,6 +186,7 @@ const callDB = async () => {
 
 
 
+const generateAccessToken = payload => jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30s' })
 
 
 
@@ -179,3 +217,26 @@ async function otpSender(email, otp) {
 app.listen(port, () => {
     console.log("Listening to port:", port)
 })
+
+
+
+function auth(req, res, next) {
+    console.log("Authorizing...")
+    const receivedAccessToken = req.headers['authorization'].split(' ')[1]
+    if (!receivedAccessToken) {
+        console.log('Error occured while accessing token')
+        return next()
+    }
+    jwt.verify(receivedAccessToken, process.env.ACCESS_TOKEN_SECRET, (err, payload) => {
+        console.log("inside jwt.verify() callback")
+        if (err) {
+            console.log("authentication failed")
+            res.status(403)
+            return
+
+        }
+        console.log(payload)
+        res.status(200).send('ok')
+
+    })
+}
